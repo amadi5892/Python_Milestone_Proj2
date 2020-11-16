@@ -8,3 +8,8 @@ Creating the Game 'War'
 # Deck
 
 # Player
+
+Game Logic
+
+while game_on
+    while at_war
