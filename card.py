@@ -19,6 +19,66 @@ two_hearts = Card("Hearts","Two")
 
 three_of_clubs = Card('Clubs','Three')
 
-print(three_of_clubs.value)
+class Deck:
 
-print(three_of_clubs == two_hearts)
+    def __init__(self):
+        
+        self.all_cards = []
+
+        for suit in suits:
+            for rank in ranks:
+                # Create the Card Object
+                created_card = Card(suit,rank)
+
+                self.all_cards.append(created_card)
+
+    def shuffle(self):
+        random.shuffle(self.all_cards)
+
+    def deal_one(self):
+        return self.all_cards.pop()
+
+new_deck = Deck()
+
+# first_card = new_deck.all_cards[-1]
+
+# for card_object in new_deck.all_cards:
+#     print(card_object)
+
+# new_deck.shuffle()
+# print(new_deck.all_cards[-1])
+
+new_deck.shuffle()
+
+mycard = new_deck.deal_one()
+print(mycard)
+print(len(new_deck.all_cards))
+
+
+class Player:
+
+    def __init__(self,name):
+
+        self.name = name
+        self.all_cards = []
+
+    def remove_one(self):
+        return self.all_cards.pop(0)
+
+    def add_cards(self,new_cards):
+        if type(new_cards) == type([]):
+            # List of multiple Card objects
+            self.all_cards.extend(new_cards)
+        else:
+            # For a single card object
+            self.all_cards.append(new_cards)
+
+    def __str__(self):
+        return f'Player {self.name} has {len(self.all_cards)} cards.'
+
+new_player = Player("Parrish")
+new_player.add_cards(mycard)
+print(new_player)
+print(new_player.all_cards[0])
+new_player.add_cards([mycard,mycard,mycard])
+print(new_player)
